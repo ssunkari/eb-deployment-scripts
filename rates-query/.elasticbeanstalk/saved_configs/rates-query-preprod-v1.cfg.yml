@@ -9,7 +9,7 @@ EnvironmentConfigurationMetadata:
   DateModified: '1461754412000'
 Tags:
   Application: RatePlans
-  Name: RatePlans UAT EB RatesQuery
+  Name: RatePlans EB RatesQuery
   Operating System: Amazon Linux
   PowerMGMT: 10x5
   ProjectCode: a208ab
@@ -45,12 +45,12 @@ OptionSettings:
     SSHSourceRestriction: tcp,22,22,0.0.0.0/0
     SecurityGroups: sg-0448e061,sg-5c872b39,sg-6f0f590b,sg-7d7ad218,sg-6f0f590b
   aws:autoscaling:updatepolicy:rollingupdate:
-    MaxBatchSize: '1'
-    MinInstancesInService: '1'
+    MaxBatchSize: '3'
+    MinInstancesInService: '2'
     PauseTime: null
     RollingUpdateEnabled: 'true'
-    RollingUpdateType: Health
-    Timeout: PT30M
+    RollingUpdateType: Immutable
+    Timeout: PT10M
   aws:ec2:vpc:
     VPCId: vpc-43cb3726
     AssociatePublicIpAddress: 'false'
