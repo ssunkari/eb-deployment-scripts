@@ -4,7 +4,7 @@ EnvironmentTier:
   Name: WebServer
 SolutionStack: 64bit Amazon Linux 2016.03 v2.1.0 running Docker 1.9.1
 EnvironmentConfigurationMetadata:
-  Description: Configuration for Rates-Query Pre-Prod.
+  Description: Configuration for Rates-Query QA Perf.
   DateCreated: '1461754412000'
   DateModified: '1461754412000'
 Tags:
@@ -33,23 +33,23 @@ OptionSettings:
   aws:autoscaling:asg:
     Availability Zones: Any
     Cooldown: '360'
-    MaxSize: '4'
-    MinSize: '2'
+    MaxSize: '12'
+    MinSize: '8'
   aws:autoscaling:launchconfiguration:
     BlockDeviceMappings: /dev/xvdcz=:12:true:gp2
     EC2KeyName: RatePlans
     IamInstanceProfile: aws-elasticbeanstalk-ec2-role
     ImageId: ami-9bef69e8
-    InstanceType: c3.xlarge
+    InstanceType: t2.medium
     MonitoringInterval: 5 minute
     SSHSourceRestriction: tcp,22,22,0.0.0.0/0
     SecurityGroups: sg-0448e061,sg-5c872b39,sg-6f0f590b,sg-7d7ad218,sg-6f0f590b
   aws:autoscaling:updatepolicy:rollingupdate:
-    MaxBatchSize: '3'
-    MinInstancesInService: '2'
+    MaxBatchSize: '4'
+    MinInstancesInService: '4'
     PauseTime: null
     RollingUpdateEnabled: 'true'
-    RollingUpdateType: Immutable
+    RollingUpdateType: Health
     Timeout: PT10M
   aws:ec2:vpc:
     VPCId: vpc-43cb3726
@@ -60,13 +60,13 @@ OptionSettings:
   aws:elasticbeanstalk:application:
     Application Healthcheck URL: /status
   aws:elasticbeanstalk:command:
-    BatchSize: '30'
-    BatchSizeType: Percentage
+    BatchSize: '4'
+    BatchSizeType: Fixed
     IgnoreHealthCheck: 'false'
     Timeout: '600'
   aws:elasticbeanstalk:control:
     DefaultSSHPort: '22'
-    LaunchTimeout: '0'
+    LaunchTimeout: '0' 
     LaunchType: Migration
     RollbackLaunchOnFailure: 'false'
   aws:elasticbeanstalk:environment:
