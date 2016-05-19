@@ -22,3 +22,12 @@ You can then make the required changes to the local copy, commit to repo, and pu
 eb config put <CONFIG_NAME>
 ```
 **N.B pushing the config to S3 will not trigger an environment update**
+
+## Scripts
+
+### eb_autoscaling.sh
+This scripts allows the auto scaling group associated with an application to be suspended or resumed. This helps with pre-production environments where EC2 instances are automatically shutdown at night/weekends. If the scaling group is not suspended, it will terminate the instance and try to replace it.
+To use:
+```
+./eb_autoscaling suspend/resume <APP_NAME>
+```
