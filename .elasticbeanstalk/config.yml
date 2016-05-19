@@ -1,5 +1,5 @@
 branch-defaults:
-  master:
+  default:
     environment: <ENV>
 global:
   application_name: <APP>
