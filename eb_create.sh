@@ -4,6 +4,7 @@ ENV_NAME=$2
 CNAME=$3
 
 eb init "$EB_APP_NAME" -r eu-west-1
+
 config_exists_in_s3=`eb config list | grep ^"$ENV_NAME"$`
 
 if [[ -z "$config_exists_in_s3" ]]; then
@@ -15,12 +16,12 @@ env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_
 
 if [[ -z "$env_status" ]]; then
 	echo "creating new environment $ENV_NAME"
-	eb create $ENV_NAME --cfg "$ENV_NAME" -c "$CNAME" -r eu-west-1 --timeout 10
+	eb create $ENV_NAME --cfg "$ENV_NAME" -c "$CNAME" -r eu-west-1 --timeout 20 -v
 	echo "environment $ENV_NAME created"
 	#create environment
 else
 	echo "updating environment $ENV_NAME, hold your breath for 15 minutes"
-	eb config $ENV_NAME --cfg $ENV_NAME
+	eb config $ENV_NAME --cfg $ENV_NAME --timeout 30 -v
 	echo "environment $ENV_NAME updated"
 fi
 
