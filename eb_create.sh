@@ -1,7 +1,7 @@
 #!/bin/bash
-ENV_NAME=$1
-CNAME=$2
-NODE_ENV=$3
+EB_APP_NAME=$1
+ENV_NAME=$2
+CNAME=$3
 
 config_exists_in_s3 = `eb config list | grep ^"$ENV_NAME"$`
 
@@ -10,12 +10,12 @@ if [[ -z "$config_exists_in_s3" ]; then
 	exit 1
 fi
 
-eb init rates-query -r eu-west-1 -p "Docker 1.9.1" -k RatePlans
+eb init "$EB_APP_NAME" -r eu-west-1 -p "Docker 1.9.1" -k RatePlans
 env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_NAME --region=eu-west-1`
 
 if [[  -z "$env_status" ]]; then
 	echo "creating new environment $ENV_NAME"
-	eb create $ENV_NAME --cfg "$ENV_NAME" -c "$CNAME" --envvars NODE_ENV=$NODE_ENV -r eu-west-1 --timeout 10
+	eb create $ENV_NAME --cfg "$ENV_NAME" -c "$CNAME" -r eu-west-1 --timeout 10
 	echo "environment $ENV_NAME created"
 	#create environment
 else
