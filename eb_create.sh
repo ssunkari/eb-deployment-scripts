@@ -12,9 +12,9 @@ if [[ -z "$config_exists_in_s3" ]]; then
 	exit 1
 fi
 
-env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_NAME --region=eu-west-1`
-echo "Env status: $env_status"
-if [[ -z "$env_status" ]; then
+env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_NAME --region=eu-west-1 --output text`
+
+if [[ -z "$env_status" ]]; then
 	echo "creating new environment $ENV_NAME"
 	eb create $ENV_NAME --cfg "$ENV_NAME" -c "$CNAME" -r eu-west-1 --timeout 30 -v
 	echo "environment $ENV_NAME created"
