@@ -5,7 +5,7 @@ CNAME=$3
 
 config_exists_in_s3 = `eb config list | grep ^"$ENV_NAME"$`
 
-if [[ -z "$config_exists_in_s3" ]; then
+if [[ -z "$config_exists_in_s3" ]]; then
 	echo "The saved config $ENV_NAME is not uploaded to S3 EB bucket, make sure you run eb config put $ENV_NAME"
 	exit 1
 fi
