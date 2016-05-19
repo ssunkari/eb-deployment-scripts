@@ -14,7 +14,7 @@ if [[ -z "$config_exists_in_s3" ]]; then
 	exit 1
 fi
 
-env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_NAME --region=eu-west-1 --output text`
+env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_NAME --region=eu-west-1 --output text --no-include-deleted`
 
 if [[ -z "$env_status" ]]; then
 	echo "creating new environment $ENV_NAME"
@@ -28,7 +28,7 @@ else
 fi
 
 echo "verifying environment $ENV_NAME status"
-env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_NAME --region=eu-west-1`
+env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_NAME --region=eu-west-1 --output text --no-include-deleted`
 
 if [ "$env_status" == "Ready" ]; then
 	echo "environment $ENV_NAME is up and ready"
