@@ -3,4 +3,5 @@ branch-defaults:
     environment: <ENV>
 global:
   application_name: <APP>
+  default_region: eu-west-1
   sc: null
