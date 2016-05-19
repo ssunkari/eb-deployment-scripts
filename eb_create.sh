@@ -7,6 +7,8 @@ eb init "$EB_APP_NAME" -r eu-west-1
 
 config_exists_in_s3=`eb config list | grep ^"$ENV_NAME"$`
 
+sudo sed -i "s/sc: git/sc: null/" .elasticbeanstalk/config.yml
+
 if [[ -z "$config_exists_in_s3" ]]; then
 	echo "The saved config $ENV_NAME is not uploaded to S3 EB bucket, make sure you run eb config put $ENV_NAME"
 	exit 1
