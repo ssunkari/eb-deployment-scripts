@@ -9,6 +9,7 @@ VERSION=$EB_APP_NAME-$SHA1
 
 #Its mandatory to init the eb, since the eb commands can only be run after initialization.
 eb init $EB_APP_NAME --region eu-west-1
+sudo sed -i "s/sc: git/sc: null/" .elasticbeanstalk/config.yml
 eb deploy $EB_ENV_NAME --version $VERSION
 
 deploystart=$(date +%s)
