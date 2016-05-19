@@ -1,0 +1,6 @@
+branch-defaults:
+  master:
+    environment: <ENV>
+global:
+  application_name: <APP>
+  sc: null
