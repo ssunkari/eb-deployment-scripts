@@ -1,8 +1,11 @@
 #!/bin/bash
 EB_APP_NAME=$1
 EB_ENVIRONMENTS=$2
-eb init "$EB_APP_NAME" -r eu-west-1 --quiet
+#eb init "$EB_APP_NAME" -r eu-west-1 --quiet
 
+#HardCoded the Environment Name, We only need it to initialize EB. Not really important to set environemnt since we only uploading saved configs to s3
+echo "Fix Env name"
+sudo sed -i "s/<ENV>/rates-query-int/" .elasticbeanstalk/config.yml
 echo "Fix App name"
 sudo sed -i "s/<APP>/$EB_APP_NAME/" .elasticbeanstalk/config.yml
 echo "Fix sc"
