@@ -28,7 +28,7 @@ else
 fi
 
 echo "verifying environment $ENV_NAME status"
-env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_NAME --region=eu-west-1 --output text --no-include-deleted`
+env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_NAME --region=eu-west-1 --query "Environments[*].Status" --output text --no-include-deleted`
 
 if [ "$env_status" == "Ready" ]; then
 	echo "environment $ENV_NAME is up and ready"
