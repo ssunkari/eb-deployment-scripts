@@ -10,7 +10,7 @@ if [[ -z "$config_exists_in_s3" ]; then
 	exit 1
 fi
 
-eb init "$EB_APP_NAME" -r eu-west-1 -p "Docker 1.9.1" -k RatePlans
+eb init "$EB_APP_NAME" -r eu-west-1
 env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_NAME --region=eu-west-1`
 
 if [[  -z "$env_status" ]]; then
