@@ -2,6 +2,12 @@
 EB_APP_NAME=$1
 EB_ENVIRONMENTS=$2
 eb init "$EB_APP_NAME" -r eu-west-1 --quiet
+
+echo "Fix App name"
+sudo sed -i "s/<APP>/$EB_APP_NAME/" .elasticbeanstalk/config.yml
+echo "Fix sc"
+sudo sed -i "s/sc: git/sc: null/" .elasticbeanstalk/config.yml
+
 ENVS="$(echo $EB_ENVIRONMENTS | sed "s/,/ /g")"
 
 for env in $ENVS
