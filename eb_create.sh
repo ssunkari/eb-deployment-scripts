@@ -16,11 +16,11 @@ env_status=`aws elasticbeanstalk describe-environments --environment-names $ENV_
 
 if [[ -z "$env_status" ]]; then
 	echo "creating new environment $ENV_NAME"
-	eb create $ENV_NAME --cfg "$ENV_NAME" -c "$CNAME" -r eu-west-1 --timeout 20 -v
+	eb create $ENV_NAME --cfg "$ENV_NAME" -c "$CNAME" -r eu-west-1 --timeout 30 -v
 	echo "environment $ENV_NAME created"
 	#create environment
 else
-	echo "updating environment $ENV_NAME, hold your breath for 15 minutes"
+	echo "updating environment $ENV_NAME, hold your breath for atleast 20 minutes"
 	eb config $ENV_NAME --cfg $ENV_NAME --timeout 30 -v
 	echo "environment $ENV_NAME updated"
 fi
