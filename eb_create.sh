@@ -3,7 +3,7 @@ EB_APP_NAME=$1
 ENV_NAME=$2
 CNAME=$3
 
-config_exists_in_s3 = `eb config list | grep ^"$ENV_NAME"$`
+config_exists_in_s3=`eb config list | grep ^"$ENV_NAME"$`
 
 if [[ -z "$config_exists_in_s3" ]]; then
 	echo "The saved config $ENV_NAME is not uploaded to S3 EB bucket, make sure you run eb config put $ENV_NAME"
