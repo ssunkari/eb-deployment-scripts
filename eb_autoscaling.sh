@@ -14,7 +14,7 @@ do
   echo "Processing $ACTION for $env"
   autoscaling_group=`aws autoscaling describe-auto-scaling-groups --query "AutoScalingGroups[?Tags[?Key=='Name' && Value=='"$env"']].AutoScalingGroupName" --output text` 
 
-  if [ "$autoscaling_group" == "" ]; then
+  if [[ -z "$autoscaling_group" ]]; then
     echo "No autoscaling group found for $env"
     $PROBLEM="1"
     continue
@@ -33,6 +33,6 @@ do
   fi
 done
 
-if [ "$PROBLEM" == "1"]; then
+if [ "$PROBLEM" == "1" ]; then
   exit 1
 fi
