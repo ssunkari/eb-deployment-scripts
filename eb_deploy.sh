@@ -13,6 +13,14 @@ sudo sed -i "s/<APP>/$EB_APP_NAME/" .elasticbeanstalk/config.yml
 sudo sed -i "s/sc: git/sc: null/" .elasticbeanstalk/config.yml
 
 echo "Do deploy of $VERSION to $EB_ENV_NAME"
+
+current_version=`aws elasticbeanstalk describe-environments --application-name "$EB_APP_NAME" --environment-name "$EB_ENV_NAME" --query "Environments[*].VersionLabel" --no-include-deleted --output text`
+
+if [ "$current_version" == "$VERSION" ]; then
+    echo "$VERSION already deployed. Skipping."
+    exit 0
+fi
+
 eb deploy $EB_ENV_NAME --version $VERSION
 
 deploystart=$(date +%s)
