@@ -91,6 +91,7 @@ OptionSettings:
           ApplicationLatencyP90: 60
           ApplicationRequests2xx: 60
           ApplicationRequests4xx: 60
+          CPUSystem: 60
       Version: 1
     HealthCheckSuccessThreshold: Ok
     SystemType: enhanced
