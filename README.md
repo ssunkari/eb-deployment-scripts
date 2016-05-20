@@ -59,3 +59,10 @@ To use:
 ```
 ./eb_deploy.sh <APP_NAME> <ENV_NAME> <GIT_REV>
 ```
+### eb_upload.sh
+This script will upload the configurations to S3 for use in environment creation or update.
+To use:
+```
+./eb_upload.sh <APP_NAME> <ENV1>,<ENV2>,<ENV3>
+```
+The configs must be named <ENV>.cfg.yml and be located in sub directory `.elasticbeanstalk/saved_configs`
