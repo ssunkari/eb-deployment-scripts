@@ -66,3 +66,4 @@ To use:
 ./eb_upload.sh <APP_NAME> <ENV1>,<ENV2>,<ENV3>
 ```
 The configs must be named <ENV>.cfg.yml and be located in sub directory `.elasticbeanstalk/saved_configs`
+
