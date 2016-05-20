@@ -26,10 +26,10 @@ eb config put <CONFIG_NAME>
 ## Scripts
 
 ### eb_autoscaling.sh
-This scripts allows the auto scaling group associated with an application to be suspended or resumed. This helps with pre-production environments where EC2 instances are automatically shutdown at night/weekends. If the scaling group is not suspended, it will terminate the instance and try to replace it.
+This scripts allows the auto scaling group associated with an environment to be suspended or resumed. This helps with pre-production environments where EC2 instances are automatically shutdown at night/weekends. If the scaling group is not suspended, it will terminate the instance and try to replace it.
 To use:
 ```
-./eb_autoscaling.sh suspend/resume <APP_NAME>
+./eb_autoscaling.sh suspend/resume <ENV1>,<ENV2>,<ENV3>
 ```
 ### eb_create.sh
 This script allows environment creation or update. It will apply a saved configuration (from S3) to an evironment.
