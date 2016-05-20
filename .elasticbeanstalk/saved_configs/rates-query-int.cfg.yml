@@ -78,6 +78,7 @@ OptionSettings:
         Environment:
           ApplicationRequests5xx: 60
           ApplicationRequests4xx: 60
+          ApplicationRequests2xx: 60
           ApplicationRequestsTotal: 60
           ApplicationLatencyP90: 60
           InstancesDegraded: 60
@@ -88,6 +89,8 @@ OptionSettings:
           ApplicationRequestsTotal: 60
           ApplicationRequests5xx: 60
           ApplicationLatencyP90: 60
+          ApplicationRequests2xx: 60
+          ApplicationRequests4xx: 60
       Version: 1
     HealthCheckSuccessThreshold: Ok
     SystemType: enhanced
