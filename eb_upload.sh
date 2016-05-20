@@ -1,7 +1,6 @@
 #!/bin/bash
 EB_APP_NAME=$1
 EB_ENVIRONMENTS=$2
-#eb init "$EB_APP_NAME" -r eu-west-1 --quiet
 
 #HardCoded the Environment Name, We only need it to initialize EB. Not really important to set environemnt since we only uploading saved configs to s3
 echo "Fix Env name"
@@ -16,7 +15,7 @@ ENVS="$(echo $EB_ENVIRONMENTS | sed "s/,/ /g")"
 for env in $ENVS
 do
   echo "Uploading Saved Config for ENV $env"
-  eb config put "$env"
+  eb config put "$env" || exit 1
 done
 
 getSavedConfigs=`eb config list`
