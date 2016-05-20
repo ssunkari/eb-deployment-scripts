@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# usage:  -c ./deploy.sh ${EB_APP_NAME} ${GO_PIPELINE_LABEL} ${S3_BUCKET} ${AWS_ACCOUNT_ID} ${NODE_ENV} ${PORT}
+# usage:  -c ./deploy.sh ${EB_APP_NAME} ${GO_PIPELINE_LABEL} ${S3_BUCKET} ${AWS_ACCOUNT_ID} ${NODE_ENV} ${PORT} ${BRANCH}
 
 EB_APP_NAME=$1
 SHA1=$2
@@ -8,6 +8,7 @@ EB_BUCKET=$3
 AWS_ACCOUNT_ID=$4
 NODE_ENV=$5
 PORT=$6
+BRANCH=$7
 
 VERSION=$EB_APP_NAME-$SHA1
 ZIP=$VERSION.zip
@@ -26,5 +27,5 @@ if [ "$existing_app" != "$VERSION" ]; then
 
 	# Create a new application version with the zipped up Dockerrun file
 	aws elasticbeanstalk create-application-version --application-name $EB_APP_NAME \
-	    --version-label $VERSION --description "Automated build" --source-bundle S3Bucket=$EB_BUCKET,S3Key=$ZIP
+	    --version-label $VERSION --description "Automated build ($BRANCH)" --source-bundle S3Bucket=$EB_BUCKET,S3Key=$ZIP
 fi
