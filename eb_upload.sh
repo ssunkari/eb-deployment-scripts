@@ -4,18 +4,23 @@ EB_ENVIRONMENTS=$2
 
 #HardCoded the Environment Name, We only need it to initialize EB. Not really important to set environemnt since we only uploading saved configs to s3
 echo "Fix Env name"
-sudo sed -i "s/<ENV>/rates-query-int/" .elasticbeanstalk/config.yml
+sed -i "s/<ENV>/rates-query-int/" .elasticbeanstalk/config.yml
 echo "Fix App name"
-sudo sed -i "s/<APP>/$EB_APP_NAME/" .elasticbeanstalk/config.yml
+sed -i "s/<APP>/$EB_APP_NAME/" .elasticbeanstalk/config.yml
 echo "Fix sc"
-sudo sed -i "s/sc: git/sc: null/" .elasticbeanstalk/config.yml
+sed -i "s/sc: git/sc: null/" .elasticbeanstalk/config.yml
 
 ENVS="$(echo $EB_ENVIRONMENTS | sed "s/,/ /g")"
 
 for env in $ENVS
 do
   echo "Uploading Saved Config for ENV $env"
-  eb config put "$env" || exit 1
+  # eb config always returns success even if it fails
+  result=`eb config put "$env" | grep ERROR`
+  if [[ ! -z "$result" ]]; then
+  	echo "$result"
+  	exit 1
+  fi
 done
 
 getSavedConfigs=`eb config list`
