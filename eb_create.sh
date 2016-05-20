@@ -3,11 +3,8 @@ EB_APP_NAME=$1
 EB_ENV_NAME=$2
 CNAME=$3
 
-echo "Fix Env name"
 sudo sed -i "s/<ENV>/$EB_EB_ENV_NAME/" .elasticbeanstalk/config.yml
-echo "Fix App name"
 sudo sed -i "s/<APP>/$EB_APP_NAME/" .elasticbeanstalk/config.yml
-echo "Fix sc"
 sudo sed -i "s/sc: git/sc: null/" .elasticbeanstalk/config.yml
 
 config_exists_in_s3=`eb config list | grep ^"$EB_ENV_NAME"$`

@@ -8,11 +8,8 @@ SHA1=$3
 VERSION=$EB_APP_NAME-$SHA1
 
 #Its mandatory to init the eb, since the eb commands can only be run after initialization.
-echo "Fix Env name"
 sudo sed -i "s/<ENV>/$EB_ENV_NAME/" .elasticbeanstalk/config.yml
-echo "Fix App name"
 sudo sed -i "s/<APP>/$EB_APP_NAME/" .elasticbeanstalk/config.yml
-echo "Fix sc"
 sudo sed -i "s/sc: git/sc: null/" .elasticbeanstalk/config.yml
 
 echo "Do deploy of $VERSION to $EB_ENV_NAME"
