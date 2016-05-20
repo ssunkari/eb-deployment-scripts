@@ -6,7 +6,7 @@ SolutionStack: 64bit Amazon Linux 2016.03 v2.1.0 running Docker 1.9.1
 EnvironmentConfigurationMetadata:
   Description: Configuration for Rates-Query Integration.
   DateCreated: '1461754412000'
-  DateModified: '1461754412000'
+  DateModified: '1463744634'
 Tags:
   Application: RatePlans
   Name: RatePlans EB RatesQuery
