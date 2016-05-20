@@ -73,7 +73,22 @@ OptionSettings:
     EnvironmentType: LoadBalanced
     ServiceRole: aws-elasticbeanstalk-service-role
   aws:elasticbeanstalk:healthreporting:system:
-    ConfigDocument: '{"Version":1,"CloudWatchMetrics":{"Instance":{"CPUIrq":null,"LoadAverage5min":null,"ApplicationRequests5xx":null,"ApplicationRequests4xx":null,"CPUUser":null,"LoadAverage1min":null,"ApplicationLatencyP50":null,"CPUIdle":null,"InstanceHealth":null,"ApplicationLatencyP95":null,"ApplicationLatencyP85":null,"RootFilesystemUtil":null,"ApplicationLatencyP90":null,"CPUSystem":null,"ApplicationLatencyP75":null,"CPUSoftirq":null,"ApplicationLatencyP10":null,"ApplicationLatencyP99":null,"ApplicationRequestsTotal":null,"ApplicationLatencyP99.9":null,"ApplicationRequests3xx":null,"ApplicationRequests2xx":null,"CPUIowait":null,"CPUNice":null},"Environment":{"InstancesSevere":null,"InstancesDegraded":null,"ApplicationRequests5xx":null,"ApplicationRequests4xx":null,"ApplicationLatencyP50":null,"ApplicationLatencyP95":null,"ApplicationLatencyP85":null,"InstancesUnknown":null,"ApplicationLatencyP90":null,"InstancesInfo":null,"InstancesPending":null,"ApplicationLatencyP75":null,"ApplicationLatencyP10":null,"ApplicationLatencyP99":null,"ApplicationRequestsTotal":null,"InstancesNoData":null,"ApplicationLatencyP99.9":null,"ApplicationRequests3xx":null,"ApplicationRequests2xx":null,"InstancesOk":null,"InstancesWarning":null}}}'
+    ConfigDocument:
+      CloudWatchMetrics:
+        Environment:
+          ApplicationRequests5xx: 60
+          ApplicationRequests4xx: 60
+          ApplicationRequestsTotal: 60
+          ApplicationLatencyP90: 60
+          InstancesDegraded: 60
+          InstancesWarning: 60
+          InstancesSevere: 60
+          InstancesOk: 60
+        Instance:
+          ApplicationRequestsTotal: 60
+          ApplicationRequests5xx: 60
+          ApplicationLatencyP90: 60
+      Version: 1
     HealthCheckSuccessThreshold: Ok
     SystemType: enhanced
   aws:elasticbeanstalk:hostmanager:
