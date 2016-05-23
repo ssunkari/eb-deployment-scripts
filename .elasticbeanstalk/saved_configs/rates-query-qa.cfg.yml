@@ -70,8 +70,11 @@ OptionSettings:
     LaunchType: Migration
     RollbackLaunchOnFailure: 'false'
   aws:elasticbeanstalk:environment:
-    EnvironmentType: LoadBalanced
+    EnvironmentType: LoadBalanced    
     ServiceRole: aws-elasticbeanstalk-service-role
+  aws:elasticbeanstalk:application:environment:
+    NODE_ENV: aws-qa
+    WORKER_COUNT: 2
   aws:elasticbeanstalk:healthreporting:system:
     ConfigDocument:
       CloudWatchMetrics:

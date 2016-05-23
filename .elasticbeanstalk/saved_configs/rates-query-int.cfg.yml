@@ -72,6 +72,9 @@ OptionSettings:
   aws:elasticbeanstalk:environment:
     EnvironmentType: LoadBalanced
     ServiceRole: aws-elasticbeanstalk-service-role
+  aws:elasticbeanstalk:application:environment:
+    NODE_ENV: aws-integration
+    WORKER_COUNT: 2
   aws:elasticbeanstalk:healthreporting:system:
     ConfigDocument:
       CloudWatchMetrics:

@@ -59,6 +59,9 @@ OptionSettings:
     Subnets: subnet-d71ec6a0
   aws:elasticbeanstalk:application:
     Application Healthcheck URL: /status
+  aws:elasticbeanstalk:application:environment:
+    NODE_ENV: aws-qa-perf
+    WORKER_COUNT: 2
   aws:elasticbeanstalk:command:
     BatchSize: '4'
     BatchSizeType: Fixed
