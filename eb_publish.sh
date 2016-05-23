@@ -23,10 +23,6 @@ if [ "$existing_app" != "$VERSION" ]; then
 	sudo sed -i "s/<NAME>/$EB_APP_NAME/" Dockerrun.aws.json
 	sudo sed -i "s/<PORT>/$PORT/" Dockerrun.aws.json
 	sudo sed -i "s/<TAG>/$SHA1/" Dockerrun.aws.json
-	sudo sed -i "s/<NODE_ENV>/$NODE_ENV/" .ebextensions/env-vars.config
-	sudo sed -i "s,<HTTP_PROXY>,$HTTP_PROXY," .ebextensions/env-vars.config
-	sudo sed -i "s,<HTTPS_PROXY>,$HTTPS_PROXY," .ebextensions/env-vars.config
-	sudo sed -i "s/<NO_PROXY>/$NO_PROXY/" .ebextensions/env-vars.config
 
 	sudo zip -r $ZIP Dockerrun.aws.json .ebextensions
 
