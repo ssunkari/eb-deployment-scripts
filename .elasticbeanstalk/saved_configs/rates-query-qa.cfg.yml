@@ -96,7 +96,7 @@ OptionSettings:
     HealthCheckSuccessThreshold: Ok
     SystemType: enhanced
   aws:elasticbeanstalk:hostmanager:
-    LogPublicationControl: 'false'
+    LogPublicationControl: 'true'
   aws:elasticbeanstalk:managedactions:
     ManagedActionsEnabled: 'false'
   aws:elasticbeanstalk:managedactions:platformupdate:
