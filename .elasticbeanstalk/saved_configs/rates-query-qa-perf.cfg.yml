@@ -60,7 +60,7 @@ OptionSettings:
   aws:elasticbeanstalk:application:
     Application Healthcheck URL: /status
   aws:elasticbeanstalk:application:environment:
-    NODE_ENV: aws-qa-perf
+    NODE_ENV: aws-qa-eb-perf
     WORKER_COUNT: 2
   aws:elasticbeanstalk:command:
     BatchSize: '4'
