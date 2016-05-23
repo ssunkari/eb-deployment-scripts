@@ -50,7 +50,7 @@ The <PORT> value is used to expose the correct port within the Dockerfile.
 This script will publish an application version to the Beanstalk application. It will configure the values in the Dockerrun.aws.json file to point to the correct docker repository/container, and configure the `NODE_ENV` environment variable. It will the create the ZIP file and push it to S3, before instructing Beanstalk to register the version.
 To use:
 ```
-./eb_publish.sh <APP_NAME> <GIT_REV> <S3_BUCKET> <AWS_ACCOUNT_ID> <NODE_ENV> <PORT> <BRANCH>
+./eb_publish.sh <APP_NAME> <GIT_REV> <S3_BUCKET> <AWS_ACCOUNT_ID> <NODE_ENV> <PORT> <BRANCH> <HTTP_PROXY> <HTTPS_PROXY> <NO_PROXY>
 ```
 The <AWS_ACCOUNT_ID> is the account associated with the ECR repository. The <PORT> is the port that will be mapped in the container I.E the port that the node app is listening on.
 ### eb_deploy.sh
