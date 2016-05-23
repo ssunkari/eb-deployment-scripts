@@ -18,6 +18,7 @@ ZIP=$VERSION.zip
 
 existing_app=`aws elasticbeanstalk describe-application-versions --application-name "$EB_APP_NAME" --version-label "$VERSION" --query "ApplicationVersions[*].VersionLabel" --output text`
 if [ "$existing_app" != "$VERSION" ]; then
+	echo "Replacing HTTP_PROXY=$HTTP_PROXY, NO_PROXY=$NO_PROXY"
 	sudo sed -i "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/" Dockerrun.aws.json
 	sudo sed -i "s/<NAME>/$EB_APP_NAME/" Dockerrun.aws.json
 	sudo sed -i "s/<PORT>/$PORT/" Dockerrun.aws.json
