@@ -108,6 +108,7 @@ OptionSettings:
     Automatically Terminate Unhealthy Instances: 'true'
   aws:elasticbeanstalk:sns:topics:
     Notification Protocol: email
+    Notification Endpoint: srinivas.sunkari@laterooms.com
   aws:elb:healthcheck:
     HealthyThreshold: '3'
     Interval: '10'
