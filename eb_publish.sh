@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# usage:  -c ./deploy.sh ${EB_APP_NAME} ${GO_PIPELINE_LABEL} ${S3_BUCKET} ${AWS_ACCOUNT_ID} ${NODE_ENV} ${PORT} ${BRANCH} ${HTTP_PROXY} ${HTTPS_PROXY} ${NO_PROXY}
+# usage:  -c ./deploy.sh ${EB_APP_NAME} ${GO_PIPELINE_LABEL} ${S3_BUCKET} ${AWS_ACCOUNT_ID} ${NODE_ENV} ${PORT} ${BRANCH}
 
 EB_APP_NAME=$1
 SHA1=$2
@@ -9,22 +9,21 @@ AWS_ACCOUNT_ID=$4
 NODE_ENV=$5
 PORT=$6
 BRANCH=$7
-HTTP_PROXY=$8
-HTTPS_PROXY=$9
-NO_PROXY=${10}
 
 VERSION=$EB_APP_NAME-$SHA1
 ZIP=$VERSION.zip
 
 existing_app=`aws elasticbeanstalk describe-application-versions --application-name "$EB_APP_NAME" --version-label "$VERSION" --query "ApplicationVersions[*].VersionLabel" --output text`
 if [ "$existing_app" != "$VERSION" ]; then
-	echo "Replacing HTTP_PROXY=$HTTP_PROXY, NO_PROXY=$NO_PROXY"
-	sudo sed -i "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/" Dockerrun.aws.json
 	sudo sed -i "s/<NAME>/$EB_APP_NAME/" Dockerrun.aws.json
 	sudo sed -i "s/<PORT>/$PORT/" Dockerrun.aws.json
 	sudo sed -i "s/<TAG>/$SHA1/" Dockerrun.aws.json
 
-	sudo zip -r $ZIP Dockerrun.aws.json .ebextensions
+	cp Dockerrun.aws.json template.Dockerrun
+
+	sudo sed -i "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/" Dockerrun.aws.json
+
+	sudo zip -r $ZIP Dockerrun.aws.json template.Dockerrun .ebextensions
 
 	aws s3 cp $ZIP s3://$EB_BUCKET/$ZIP
 
