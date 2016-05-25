@@ -75,6 +75,8 @@ OptionSettings:
   aws:elasticbeanstalk:application:environment:
     NODE_ENV: aws-integration
     WORKER_COUNT: 2
+    HTTP_PROXY: http://10.199.1.11:8080
+    HTTPS_PROXY: http://10.199.1.11:8080
   aws:elasticbeanstalk:healthreporting:system:
     ConfigDocument:
       CloudWatchMetrics:
