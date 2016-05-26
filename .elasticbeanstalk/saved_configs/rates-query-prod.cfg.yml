@@ -41,7 +41,7 @@ OptionSettings:
     ImageId: ami-9bef69e8
     InstanceType: t2.medium
     MonitoringInterval: 5 minute
-    SSHSourceRestriction: tcp,22,22,0.0.0.0/0
+    SSHSourceRestriction: tcp,22,22,172.31.141.5/32
     SecurityGroups: sg-34036f51,sg-bb8c02de,sg-0ae2756f,sg-39e1765c
   aws:autoscaling:updatepolicy:rollingupdate:
     MaxBatchSize: '4'
