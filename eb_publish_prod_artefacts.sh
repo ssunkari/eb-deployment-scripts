@@ -6,6 +6,8 @@ AWS_DEV_ACCOUNT_ID=$3
 AWS_PROD_ACCOUNT_ID=$4
 EB_BUCKET=$5
 AWS_PROD_PROFILE=$6
+NEWRELIC_KEY=$7
+PROXY_URL=$8
 
 VERSION=$EB_APP_NAME-$SHA1
 ZIP=$VERSION.zip
@@ -37,8 +39,10 @@ echo "Processing files"
 unzip $ZIP template.Dockerrun
 mv template.Dockerrun Dockerrun.aws.json
 sed -i "s/<AWS_ACCOUNT_ID>/$AWS_PROD_ACCOUNT_ID/" Dockerrun.aws.json
-zip -d template.Dockerrun
-zip -u $ZIP Dockerrun.aws.json
+sed -i "s,<PROXY_URL>,$PROXY_URL," .ebextensions/newrelic.config
+sed -i "s/<NR_LICENSE_KEY>/$NEWRELIC_KEY/" .ebextensions/newrelic.config
+zip -d $ZIP template.Dockerrun
+zip -u $ZIP Dockerrun.aws.json .ebextensions/* 
 
 echo "Uploading $ZIP to Prod S3 $EB_BUCKET"
 aws s3 cp $ZIP s3://$EB_BUCKET/$ZIP --profile $AWS_PROD_PROFILE
