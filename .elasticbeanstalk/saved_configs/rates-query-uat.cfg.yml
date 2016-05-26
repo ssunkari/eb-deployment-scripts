@@ -91,7 +91,7 @@ OptionSettings:
   aws:elb:healthcheck:
     HealthyThreshold: '3'
     Interval: '10'
-    Target: HTTP:80/status
+    Target: HTTP:80/health
     Timeout: '5'
     UnhealthyThreshold: '5'
   aws:elb:listener:80:
