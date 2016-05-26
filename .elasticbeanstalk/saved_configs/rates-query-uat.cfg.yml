@@ -58,7 +58,7 @@ OptionSettings:
     ELBSubnets: subnet-ea995b9d
     Subnets: subnet-d71ec6a0
   aws:elasticbeanstalk:application:
-    Application Healthcheck URL: /status
+    Application Healthcheck URL: /health
   aws:elasticbeanstalk:command:
     BatchSize: '2'
     BatchSizeType: Fixed

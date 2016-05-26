@@ -57,7 +57,7 @@ OptionSettings:
     ELBSubnets: subnet-58ee523d,subnet-771ee02e,subnet-f7fd5880
     Subnets: subnet-58e82901,subnet-652fab00,subnet-ffe04c88
   aws:elasticbeanstalk:application:
-    Application Healthcheck URL: /status
+    Application Healthcheck URL: /health
   aws:elasticbeanstalk:application:environment:
     NODE_ENV: aws-production
     WORKER_COUNT: 2
