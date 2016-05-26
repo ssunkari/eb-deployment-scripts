@@ -37,11 +37,13 @@ OptionSettings:
     MinSize: '1'
   aws:autoscaling:launchconfiguration:
     BlockDeviceMappings: /dev/xvdcz=:12:true:gp2
+    EC2KeyName: RatePlans
     IamInstanceProfile: aws-elasticbeanstalk-ec2-role
     ImageId: ami-9bef69e8
     InstanceType: t2.medium
     MonitoringInterval: 5 minute
     SecurityGroups: sg-0448e061,sg-5c872b39,sg-6f0f590b,sg-7d7ad218,sg-6f0f590b
+    SSHSourceRestriction: tcp, 22, 22, 10.199.0.0/16
   aws:autoscaling:updatepolicy:rollingupdate:
     MaxBatchSize: '1'
     MinInstancesInService: '1'
