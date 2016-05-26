@@ -42,7 +42,6 @@ OptionSettings:
     ImageId: ami-9bef69e8
     InstanceType: t2.medium
     MonitoringInterval: 5 minute
-    SSHSourceRestriction: tcp,22,22,0.0.0.0/0
     SecurityGroups: sg-0448e061,sg-5c872b39,sg-6f0f590b,sg-7d7ad218,sg-6f0f590b
   aws:autoscaling:updatepolicy:rollingupdate:
     MaxBatchSize: '1'
@@ -108,7 +107,6 @@ OptionSettings:
     Automatically Terminate Unhealthy Instances: 'true'
   aws:elasticbeanstalk:sns:topics:
     Notification Protocol: email
-    Notification Endpoint: srinivas.sunkari@laterooms.com
   aws:elb:healthcheck:
     HealthyThreshold: '3'
     Interval: '10'
