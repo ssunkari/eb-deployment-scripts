@@ -20,14 +20,14 @@ if [ "$existing_app" != "$VERSION" ]; then
 	sed -i "s/<NAME>/$EB_APP_NAME/" Dockerrun.aws.json
 	sed -i "s/<PORT>/$PORT/" Dockerrun.aws.json
 	sed -i "s/<TAG>/$SHA1/" Dockerrun.aws.json
-	sed -i "s/<PROXY_URL>/$PROXY_URL/" .ebextensions/newrelic.config
-	sed -i "s/<NR_LICENSE_KEY/$NEWRELIC_KEY/" .ebextensions/newrelic.config
+	sed -i "s,<PROXY_URL>,$PROXY_URL," .ebextensions/newrelic.config
+	sed -i "s/<NR_LICENSE_KEY>/$NEWRELIC_KEY/" .ebextensions/newrelic.config
 	
 	cp Dockerrun.aws.json template.Dockerrun
 
 	sed -i "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/" Dockerrun.aws.json
 
-	zip -r $ZIP Dockerrun.aws.json template.Dockerrun .ebextensions
+	zip -r $ZIP Dockerrun.aws.json template.Dockerrun .ebextensions/*
 
 	aws s3 cp $ZIP s3://$EB_BUCKET/$ZIP
 
