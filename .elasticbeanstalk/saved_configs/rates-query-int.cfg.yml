@@ -87,7 +87,8 @@ OptionSettings:
   aws:elasticbeanstalk:monitoring:
     Automatically Terminate Unhealthy Instances: 'true'
   aws:elasticbeanstalk:sns:topics:
-    Notification Protocol: email
+    Notification Protocol: sqs
+    Notification Endpoint: RatesQuery-INT
   aws:elb:healthcheck:
     HealthyThreshold: '3'
     Interval: '10'
