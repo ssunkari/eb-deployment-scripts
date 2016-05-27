@@ -88,8 +88,7 @@ OptionSettings:
     Automatically Terminate Unhealthy Instances: 'true'
   aws:elasticbeanstalk:sns:topics:
     Notification Protocol: sqs
-    Notification Endpoint: arn:aws:sqs:eu-west-1:679360968376:RatesQuery-Int
-    Notification Topic ARN: arn:aws:sns:eu-west-1:679360968376:RatesQuery-Int
+    Notification Endpoint: RatesQuery-Int
     Notification Topic Name: RatesQuery-Int
   aws:elb:healthcheck:
     HealthyThreshold: '3'
