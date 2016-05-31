@@ -32,7 +32,7 @@ echo "Pushing container $PROD_CONTAINER"
 sudo docker push $PROD_CONTAINER
 
 echo "Fetching $ZIP from Dev S3 $EB_DEV_BUCKET"
-aws s3 cp s3://$EB_DEV_BUCKET/$ZIP $ZIP 
+aws s3 cp s3://$EB_DEV_BUCKET/$ZIP $ZIP --region eu-west-1
 
 echo "Processing files"
 unzip $ZIP template.Dockerrun
@@ -44,7 +44,7 @@ zip -d $ZIP template.Dockerrun
 zip -u $ZIP Dockerrun.aws.json .ebextensions/* 
 
 echo "Uploading $ZIP to Prod S3 $EB_PROD_BUCKET"
-aws s3 cp $ZIP s3://$EB_PROD_BUCKET/$ZIP --profile $AWS_PROD_PROFILE
+aws s3 cp $ZIP s3://$EB_PROD_BUCKET/$ZIP --profile $AWS_PROD_PROFILE --region eu-west-1
 
 echo "Publishing application version $VERSION to Prod EB app $EB_APP_NAME"
 # Create a new application version with the zipped up Dockerrun file
