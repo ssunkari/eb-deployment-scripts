@@ -49,4 +49,4 @@ aws s3 cp $ZIP s3://$EB_PROD_BUCKET/$ZIP --profile $AWS_PROD_PROFILE
 echo "Publishing application version $VERSION to Prod EB app $EB_APP_NAME"
 # Create a new application version with the zipped up Dockerrun file
 aws elasticbeanstalk create-application-version --application-name $EB_APP_NAME \
-    --version-label $VERSION --description "Automated build" --source-bundle S3Bucket=$EB_BUCKET,S3Key=$ZIP --profile $AWS_PROD_PROFILE --region eu-west-1
+    --version-label $VERSION --description "Automated build" --source-bundle S3Bucket=$EB_PROD_BUCKET,S3Key=$ZIP --profile $AWS_PROD_PROFILE --region eu-west-1
