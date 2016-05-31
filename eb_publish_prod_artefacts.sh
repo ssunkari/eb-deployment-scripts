@@ -4,10 +4,11 @@ EB_APP_NAME=$1
 SHA1=$2
 AWS_DEV_ACCOUNT_ID=$3
 AWS_PROD_ACCOUNT_ID=$4
-EB_BUCKET=$5
-AWS_PROD_PROFILE=$6
-NEWRELIC_KEY=$7
-PROXY_URL=$8
+EB_DEV_BUCKET=$5
+EB_PROD_BUCKET=$6
+AWS_PROD_PROFILE=$7
+NEWRELIC_KEY=$8
+PROXY_URL=$9
 
 VERSION=$EB_APP_NAME-$SHA1
 ZIP=$VERSION.zip
@@ -23,7 +24,7 @@ eval sudo $login_command
 
 echo "Pulling container $DEV_CONTAINER"
 sudo docker pull $DEV_CONTAINER
-sudo docker tag $DEV_CONTAINER $PROD_CONTAINER
+sudo docker tag -f $DEV_CONTAINER $PROD_CONTAINER
 
 # login to prod ECR
 echo "Login to Prod ECR"
@@ -32,8 +33,8 @@ eval sudo $login_command
 echo "Pushing container $PROD_CONTAINER"
 sudo docker push $PROD_CONTAINER
 
-echo "Fetching $ZIP from Dev S3 $EB_BUCKET"
-aws s3 cp s3://$EB_BUCKET/$ZIP $ZIP
+echo "Fetching $ZIP from Dev S3 $EB_DEV_BUCKET"
+aws s3 cp s3://$EB_DEV_BUCKET/$ZIP $ZIP
 
 echo "Processing files"
 unzip $ZIP template.Dockerrun
@@ -44,8 +45,8 @@ sed -i "s/<NR_LICENSE_KEY>/$NEWRELIC_KEY/" .ebextensions/newrelic.config
 zip -d $ZIP template.Dockerrun
 zip -u $ZIP Dockerrun.aws.json .ebextensions/* 
 
-echo "Uploading $ZIP to Prod S3 $EB_BUCKET"
-aws s3 cp $ZIP s3://$EB_BUCKET/$ZIP --profile $AWS_PROD_PROFILE
+echo "Uploading $ZIP to Prod S3 $EB_PROD_BUCKET"
+aws s3 cp $ZIP s3://$EB_PROD_BUCKET/$ZIP --profile $AWS_PROD_PROFILE
 
 echo "Publishing application version $VERSION to Prod EB app $EB_APP_NAME"
 # Create a new application version with the zipped up Dockerrun file
