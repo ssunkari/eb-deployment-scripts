@@ -15,11 +15,9 @@ ZIP=$VERSION.zip
 DEV_CONTAINER=$AWS_DEV_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/$EB_APP_NAME:$SHA1
 PROD_CONTAINER=$AWS_PROD_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/$EB_APP_NAME:$SHA1
 
-aws configure set default.region eu-west-1
-
 # login to DEV ECR
 echo "Login into Dev ECR"
-login_command=$(aws ecr get-login)
+login_command=$(aws ecr get-login --region eu-west-1)
 eval sudo $login_command
 
 echo "Pulling container $DEV_CONTAINER"
@@ -28,13 +26,13 @@ sudo docker tag -f $DEV_CONTAINER $PROD_CONTAINER
 
 # login to prod ECR
 echo "Login to Prod ECR"
-login_command=$(aws ecr get-login --profile $AWS_PROD_PROFILE)
+login_command=$(aws ecr get-login --profile $AWS_PROD_PROFILE --region eu-west-1)
 eval sudo $login_command
 echo "Pushing container $PROD_CONTAINER"
 sudo docker push $PROD_CONTAINER
 
 echo "Fetching $ZIP from Dev S3 $EB_DEV_BUCKET"
-aws s3 cp s3://$EB_DEV_BUCKET/$ZIP $ZIP
+aws s3 cp s3://$EB_DEV_BUCKET/$ZIP $ZIP 
 
 echo "Processing files"
 unzip $ZIP template.Dockerrun
