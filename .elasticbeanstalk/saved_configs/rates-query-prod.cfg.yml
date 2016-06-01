@@ -30,13 +30,13 @@ OptionSettings:
     Statistic: Average
     Unit: Bytes
   aws:autoscaling:asg:
-    Availability Zones: Any
+    Custom Availability Zones: eu-west-1a,eu-west-1b,eu-west-1c
     Cooldown: '360'
     MaxSize: '12'
     MinSize: '8'
   aws:autoscaling:launchconfiguration:
     BlockDeviceMappings: /dev/xvdcz=:12:true:gp2
-    EC2KeyName: Prod-RatePlans
+    EC2KeyName: RatePlans
     IamInstanceProfile: aws-elasticbeanstalk-ec2-role
     ImageId: ami-9bef69e8
     InstanceType: t2.medium
@@ -61,8 +61,6 @@ OptionSettings:
   aws:elasticbeanstalk:application:environment:
     NODE_ENV: aws-production
     WORKER_COUNT: 2
-    https_proxy: http://10.100.3.11:8080
-    no_proxy: localhost,127.0.0.1,localaddress,.localdomain.com,.laterooms.com
   aws:elasticbeanstalk:command:
     BatchSize: '4'
     BatchSizeType: Fixed
@@ -108,7 +106,7 @@ OptionSettings:
   aws:elasticbeanstalk:monitoring:
     Automatically Terminate Unhealthy Instances: 'true'
   aws:elasticbeanstalk:sns:topics:
-    Notification Protocol: sqs
+        Notification Protocol: sqs
     Notification Endpoint: arn:aws:sqs:eu-west-1:308867920639:rates-query
     Notification Topic Name: rates-query
   aws:elb:healthcheck:
