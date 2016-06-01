@@ -61,6 +61,8 @@ OptionSettings:
   aws:elasticbeanstalk:application:environment:
     NODE_ENV: aws-production
     WORKER_COUNT: 2
+    https_proxy: http://10.100.3.11:8080
+    no_proxy: localhost,127.0.0.1,localaddress,.localdomain.com,.laterooms.com
   aws:elasticbeanstalk:command:
     BatchSize: '4'
     BatchSizeType: Fixed
