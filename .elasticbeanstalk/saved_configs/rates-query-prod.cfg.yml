@@ -42,7 +42,7 @@ OptionSettings:
     InstanceType: t2.medium
     MonitoringInterval: 5 minute
     SSHSourceRestriction: tcp,22,22,172.31.141.5/32
-    SecurityGroups: sg-34036f51,sg-bb8c02de,sg-0ae2756f,sg-39e1765c
+    SecurityGroups: sg-34036f51,sg-bb8c02de,sg-0ae2756f,sg-39e1765c,sg-e77ec380
   aws:autoscaling:updatepolicy:rollingupdate:
     MaxBatchSize: '4'
     MinInstancesInService: '4'
