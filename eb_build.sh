@@ -19,5 +19,5 @@ eval sudo $login_command
 
 sudo docker build -t $EB_APP_NAME:$SHA1 --build-arg http_proxy=$PROXY_URL --build-arg https_proxy=$PROXY_URL --build-arg no_proxy=$NO_PROXY .
 sudo docker tag $EB_APP_NAME:$SHA1 $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/$EB_APP_NAME:$SHA1
-sudo docker run -i -a STDOUT --rm -e NODE_ENV=ci -e GO_PIPELINE_LABEL=SHA1 $EB_APP_NAME:$SHA1 grunt
+sudo docker run -i -a STDOUT --rm -e NODE_ENV=ci -e GO_PIPELINE_LABEL=$SHA1 $EB_APP_NAME:$SHA1 grunt
 sudo docker push $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/$EB_APP_NAME:$SHA1
