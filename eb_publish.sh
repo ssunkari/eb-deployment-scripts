@@ -22,6 +22,7 @@ if [ "$existing_app" != "$VERSION" ]; then
 	sed -i "s/<TAG>/$SHA1/" Dockerrun.aws.json
 	sed -i "s,<PROXY_URL>,$PROXY_URL," .ebextensions/newrelic.config
 	sed -i "s/<NR_LICENSE_KEY>/$NEWRELIC_KEY/" .ebextensions/newrelic.config
+	sed -i "s/<NAME>/$EB_APP_NAME/" .ebextensions/newrelic.config
 	
 	cp Dockerrun.aws.json template.Dockerrun
 
