@@ -9,7 +9,7 @@ PROXY_URL=$4
 NO_PROXY=$5
 PORT=$6
 
-sudo sed -i "s/<PORT>/$PORT/" Dockerfile
+sudo sed -i "s/EXPOSE [0-9]\+$/EXPOSE $PORT/" Dockerfile
 
 aws configure set default.region eu-west-1
 
