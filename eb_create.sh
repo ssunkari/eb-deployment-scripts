@@ -28,14 +28,30 @@ else
 fi
 
 echo "verifying environment $EB_ENV_NAME status"
-env_status=`aws elasticbeanstalk describe-environments --environment-names $EB_ENV_NAME --region=eu-west-1 --query "Environments[*].Status" --output text --no-include-deleted`
 
-if [ "$env_status" == "Ready" ]; then
-	echo "environment $EB_ENV_NAME is up and ready"
-else
-	echo "environment $EB_ENV_NAME failed to provision"
-	exit 1
-fi
+
+deploystart=$(date +%s)
+timeout=120 # Seconds to wait before error.
+threshhold=$((deploystart + timeout))
+while true; do
+    # Check for timeout
+    timenow=$(date +%s)
+    if [[ "$timenow" > "$threshhold" ]]; then
+        echo "Timeout - $timeout seconds elapsed"
+        exit 1
+    fi
+    
+	env_status=`aws elasticbeanstalk describe-environments --environment-names $EB_ENV_NAME --region=eu-west-1 --query "Environments[*].Status" --output text --no-include-deleted`
+
+	if [ "$env_status" != "Ready" ]; then
+		echo "System not Ready -it's $status. Waiting."
+        sleep 10
+        continue
+	fi
+
+    break
+done
+
 
 
 
