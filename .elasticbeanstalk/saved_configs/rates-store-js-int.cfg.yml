@@ -8,7 +8,7 @@ EnvironmentConfigurationMetadata:
   DateCreated: '1470299448000'
   DateModified: '1470299448000'
 Tags:
-  Application: RatePlans
+  Application: Rates Store JS
   Name: RatePlans EB RatesStoreJS
   Operating System: Amazon Linux
   PowerMGMT: 10x5
@@ -77,7 +77,7 @@ OptionSettings:
     WORKER_COUNT: 2
   aws:elasticbeanstalk:healthreporting:system:
     HealthCheckSuccessThreshold: Ok
-    SystemType: enhanced
+    SystemType: basic
   aws:elasticbeanstalk:hostmanager:
     LogPublicationControl: 'true'
   aws:elasticbeanstalk:managedactions:
