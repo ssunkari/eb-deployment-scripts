@@ -21,20 +21,20 @@ OptionSettings:
   AWSEBAutoScalingScaleUpPolicy.aws:autoscaling:trigger:
     UpperBreachScaleIncrement: '1'
   AWSEBCloudwatchAlarmHigh.aws:autoscaling:trigger:
-    UpperThreshold: '6000000'
+    UpperThreshold: '310'
   AWSEBCloudwatchAlarmLow.aws:autoscaling:trigger:
     BreachDuration: '5'
     EvaluationPeriods: '1'
-    LowerThreshold: '2000000'
-    MeasureName: NetworkOut
+    LowerThreshold: '280'
+    MeasureName: RequestCount
     Period: '5'
     Statistic: Average
-    Unit: Bytes
+    Unit: Count/Second
   aws:autoscaling:asg:
     Availability Zones: Any
     Cooldown: '360'
-    MaxSize: '12'
-    MinSize: '8'
+    MaxSize: '4'
+    MinSize: '4'
   aws:autoscaling:launchconfiguration:
     BlockDeviceMappings: /dev/xvdcz=:12:true:gp2
     EC2KeyName: RatePlans
@@ -45,8 +45,8 @@ OptionSettings:
     SSHSourceRestriction: tcp, 22, 22, 10.199.0.0/16
     SecurityGroups: sg-0448e061,sg-5c872b39,sg-6f0f590b,sg-7d7ad218,sg-6f0f590b
   aws:autoscaling:updatepolicy:rollingupdate:
-    MaxBatchSize: '4'
-    MinInstancesInService: '4'
+    MaxBatchSize: '2'
+    MinInstancesInService: '2'
     PauseTime: null
     RollingUpdateEnabled: 'true'
     RollingUpdateType: Health
@@ -63,7 +63,7 @@ OptionSettings:
     NODE_ENV: aws-qa-eb-perf
     WORKER_COUNT: 2
   aws:elasticbeanstalk:command:
-    BatchSize: '4'
+    BatchSize: '2'
     BatchSizeType: Fixed
     IgnoreHealthCheck: 'false'
     Timeout: '600'
