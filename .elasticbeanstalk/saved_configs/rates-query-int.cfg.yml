@@ -21,19 +21,19 @@ OptionSettings:
   AWSEBAutoScalingScaleUpPolicy.aws:autoscaling:trigger:
     UpperBreachScaleIncrement: '1'
   AWSEBCloudwatchAlarmHigh.aws:autoscaling:trigger:
-    UpperThreshold: '6000000'
+    UpperThreshold: '310'
   AWSEBCloudwatchAlarmLow.aws:autoscaling:trigger:
     BreachDuration: '5'
     EvaluationPeriods: '1'
-    LowerThreshold: '2000000'
-    MeasureName: NetworkOut
+    LowerThreshold: '280'
+    MeasureName: RequestCount
     Period: '5'
     Statistic: Average
-    Unit: Bytes
+    Unit: Counbt/Second
   aws:autoscaling:asg:
     Availability Zones: Any
     Cooldown: '360'
-    MaxSize: '4'
+    MaxSize: '2'
     MinSize: '1'
   aws:autoscaling:launchconfiguration:
     BlockDeviceMappings: /dev/xvdcz=:12:true:gp2
@@ -77,7 +77,7 @@ OptionSettings:
     WORKER_COUNT: 2
   aws:elasticbeanstalk:healthreporting:system:
     HealthCheckSuccessThreshold: Ok
-    SystemType: enhanced
+    SystemType: basic
   aws:elasticbeanstalk:hostmanager:
     LogPublicationControl: 'true'
   aws:elasticbeanstalk:managedactions:
