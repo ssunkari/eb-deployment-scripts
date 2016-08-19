@@ -23,7 +23,11 @@ if [[ -z "$env_status" ]]; then
 	#create environment
 else
 	echo "updating environment $EB_ENV_NAME, hold your breath for atleast 20 minutes"
-	eb config $EB_ENV_NAME --cfg $EB_ENV_NAME --timeout 30 -v
+	result=`eb config $EB_ENV_NAME --cfg $EB_ENV_NAME --timeout 30 -v | grep ERROR`
+	if [[ ! -z "$result" ]]; then
+  		echo "$result"
+  	   	exit 1
+  	fi
 	echo "environment $EB_ENV_NAME updated"
 fi
 
