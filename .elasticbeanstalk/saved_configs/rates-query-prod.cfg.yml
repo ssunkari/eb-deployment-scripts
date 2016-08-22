@@ -26,7 +26,7 @@ OptionSettings:
     EvaluationPeriods: '1'
     LowerThreshold: '60000'
     MeasureName: RequestCount
-    Period: '1'
+    Period: '5'
     Statistic: Sum
     Unit: Count
   aws:autoscaling:asg:
