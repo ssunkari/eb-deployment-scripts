@@ -20,14 +20,14 @@ OptionSettings:
   AWSEBAutoScalingScaleUpPolicy.aws:autoscaling:trigger:
     UpperBreachScaleIncrement: '1'
   AWSEBCloudwatchAlarmHigh.aws:autoscaling:trigger:
-    UpperThreshold: '310'
+    UpperThreshold: '28000'
   AWSEBCloudwatchAlarmLow.aws:autoscaling:trigger:
-    BreachDuration: '5'
+    BreachDuration: '3'
     EvaluationPeriods: '1'
-    LowerThreshold: '280'
+    LowerThreshold: '15000'
     MeasureName: RequestCount
-    Period: '5'
-    Statistic: Average
+    Period: '1'
+    Statistic: Sum
     Unit: Count
   aws:autoscaling:asg:
     Availability Zones: Any
