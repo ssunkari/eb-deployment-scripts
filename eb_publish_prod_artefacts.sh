@@ -40,6 +40,7 @@ mv template.Dockerrun Dockerrun.aws.json
 sed -i "s/<AWS_ACCOUNT_ID>/$AWS_PROD_ACCOUNT_ID/" Dockerrun.aws.json
 sed -i "s,<PROXY_URL>,$PROXY_URL," .ebextensions/newrelic.config
 sed -i "s/<NR_LICENSE_KEY>/$NEWRELIC_KEY/" .ebextensions/newrelic.config
+sed -i "s/<NAME>/$EB_APP_NAME/" .ebextensions/newrelic.config
 zip -d $ZIP template.Dockerrun
 zip -u $ZIP Dockerrun.aws.json .ebextensions/* 
 
