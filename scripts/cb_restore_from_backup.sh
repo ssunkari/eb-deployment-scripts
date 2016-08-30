@@ -23,7 +23,7 @@
  && /usr/local/bin/aws s3 sync s3://go-artifacts-store/couchbase/backups/$RESTORE_FROM_ENV $RESTORE_FROM_ENV \
  && echo 'backup copied to target machine!!!!yay' \
  && echo 'started restoring couchbase backup on instance with ip: $TARGET_COUCHBASE_INSTANCE_IP' \
- && python /opt/couchbase/cli/cbrestore '~/restore/$RESTORE_FROM_ENV/' 'http://$TARGET_COUCHBASE_INSTANCE_IP:$TARGET_COUCHBASE_INSTANCE_PORT' --bucket-source=$SOURCE_BUCKET --bucket-destination=$DEST_BUCKET \
+ && python /opt/couchbase/cli/cbrestore ~/restore/$RESTORE_FROM_ENV/ 'http://$TARGET_COUCHBASE_INSTANCE_IP:$TARGET_COUCHBASE_INSTANCE_PORT' --bucket-source=$SOURCE_BUCKET --bucket-destination=$DEST_BUCKET \
  -u $CB_USERNAME -p $CB_PASSWORD \
  && echo 'restore finished on $TARGET_COUCHBASE_INSTANCE_IP'"
 
