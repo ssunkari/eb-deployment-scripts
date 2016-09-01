@@ -19,12 +19,12 @@
 
  ssh $SUDO_USER@$BACKUP_INSTANCE_IP -i $SSH_KEY_PATH "rm -rf ~/restore \
  && mkdir -p ~/restore && cd ~/restore \
- && export AWS_ACCESS_KEY_ID=AKIAJTPO5HZFCTRXPN7A \
- && export AWS_SECRET_ACCESS_KEY=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 \
+ && export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+ && export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
  && /usr/local/bin/aws s3 sync s3://go-artifacts-store/couchbase/backups/$RESTORE_FROM_ENV $RESTORE_FROM_ENV \
  && echo 'backup copied to target machine!!!!yay' \
  && echo 'started restoring couchbase backup on instance with ip: $CouchUri'  \
- && sudo python /opt/couchbase/cli/cbrestore ~/restore/$RESTORE_FROM_ENV/ $CouchUri --bucket-source=$SOURCE_BUCKET --bucket-destination=$DEST_BUCKET -u $CB_USERNAME -p $CB_PASSWORD \
+ && sudo python /opt/couchbase/cli/cbrestore ~/restore/$RESTORE_FROM_ENV/ $CouchUri --bucket-source=$SOURCE_BUCKET --bucket-destination=$DEST_BUCKET -u $CB_USERNAME -p $CB_PASSWORD -vvv\
  && echo 'restore finished on $TARGET_COUCHBASE_INSTANCE_IP'"
 
 # sh ./cb_kafka_restore_from_backup.sh ~/.ssh/rateplans.pem 10.199.4.124 rates-uat lradmin 10.199.6.99 8091 ratesandavailability ratesandavailability ratesservice mysecretword 

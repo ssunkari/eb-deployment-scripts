@@ -14,8 +14,8 @@
  ssh $SUDO_USER@$BACKUP_INSTANCE_IP -i $SSH_KEY_PATH  "\
  rm -rf ~/replay \
  && mkdir -p ~/replay && cd ~/replay \
- && export AWS_ACCESS_KEY_ID=AKIAJTPO5HZFCTRXPN7A \
- && export AWS_SECRET_ACCESS_KEY=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 \
+ && export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+ && export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
  && /usr/local/bin/aws s3 sync s3://go-artifacts-store/couchbase/backups/$RESTORE_FROM_ENV/ . --exclude '*' --include '*.txt' \
  && echo 'backup copied to target machine!!!!yay' \
  && cat offsets_*.txt | sed -n '/$KAFKA_TOPIC_REGEX/p' > offsets.txt \
