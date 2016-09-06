@@ -36,7 +36,7 @@ OptionSettings:
     MinSize: '1'
   aws:autoscaling:launchconfiguration:
     BlockDeviceMappings: /dev/xvdcz=:12:true:gp2
-    EC2KeyName: RatePlans
+    EC2KeyName: Prod-RatePlans
     IamInstanceProfile: aws-elasticbeanstalk-ec2-role
     ImageId: ami-23940f50
     InstanceType: t2.medium
