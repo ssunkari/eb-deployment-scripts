@@ -20,11 +20,11 @@ OptionSettings:
   AWSEBAutoScalingScaleUpPolicy.aws:autoscaling:trigger:
     UpperBreachScaleIncrement: '1'
   AWSEBCloudwatchAlarmHigh.aws:autoscaling:trigger:
-    UpperThreshold: '6000000'
+    UpperThreshold: '50000000'
   AWSEBCloudwatchAlarmLow.aws:autoscaling:trigger:
     BreachDuration: '5'
     EvaluationPeriods: '1'
-    LowerThreshold: '2000000'
+    LowerThreshold: '35000000'
     MeasureName: NetworkOut
     Period: '5'
     Statistic: Average
@@ -33,7 +33,7 @@ OptionSettings:
     Availability Zones: Any
     Cooldown: '360'
     MaxSize: '2'
-    MinSize: '1'
+    MinSize: '2'
   aws:autoscaling:launchconfiguration:
     BlockDeviceMappings: /dev/xvdcz=:12:true:gp2
     EC2KeyName: Prod-RatePlans
@@ -75,8 +75,18 @@ OptionSettings:
     NODE_ENV: production
     WORKER_COUNT: 2
   aws:elasticbeanstalk:healthreporting:system:
+    ConfigDocument:
+      CloudWatchMetrics:
+        Environment:
+          InstancesDegraded: 60
+          InstancesWarning: 60
+          InstancesSevere: 60
+          InstancesOk: 60
+        Instance:
+          CPUSystem: 60
+      Version: 1
     HealthCheckSuccessThreshold: Ok
-    SystemType: basic
+    SystemType: enhanced
   aws:elasticbeanstalk:hostmanager:
     LogPublicationControl: 'true'
   aws:elasticbeanstalk:managedactions:
