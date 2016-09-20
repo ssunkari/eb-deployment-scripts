@@ -73,7 +73,7 @@ OptionSettings:
     EnvironmentType: LoadBalanced
     ServiceRole: aws-elasticbeanstalk-service-role
   aws:elasticbeanstalk:application:environment:
-    NODE_ENV: aws-qa
+    NODE_ENV: aws-uat
     WORKER_COUNT: 2
   aws:elasticbeanstalk:healthreporting:system:
     HealthCheckSuccessThreshold: Ok
