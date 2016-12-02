@@ -45,8 +45,8 @@ OptionSettings:
     SecurityGroups: sg-0448e061,sg-5c872b39,sg-6f0f590b,sg-6f0f590b,sg-b01f87d5
     SSHSourceRestriction: tcp, 22, 22, 10.199.0.0/16
   aws:autoscaling:updatepolicy:rollingupdate:
-    MaxBatchSize: '1'
-    MinInstancesInService: '1'
+    MaxBatchSize: '2'
+    MinInstancesInService: '2'
     PauseTime: null
     RollingUpdateEnabled: 'true'
     RollingUpdateType: Health
