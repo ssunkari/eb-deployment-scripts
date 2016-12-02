@@ -33,8 +33,8 @@ OptionSettings:
   aws:autoscaling:asg:
     Availability Zones: Any
     Cooldown: '360'
-    MaxSize: '2'
-    MinSize: '1'
+    MaxSize: '5'
+    MinSize: '4'
   aws:autoscaling:launchconfiguration:
     BlockDeviceMappings: /dev/xvdcz=:12:true:gp2
     EC2KeyName: RatePlans
