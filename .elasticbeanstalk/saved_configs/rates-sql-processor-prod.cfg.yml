@@ -74,7 +74,7 @@ OptionSettings:
   aws:elasticbeanstalk:application:environment:
     NODE_ENV: production
     WORKER_COUNT: 2
-   aws:elasticbeanstalk:healthreporting:system:
+  aws:elasticbeanstalk:healthreporting:system:
     ConfigDocument:
       CloudWatchMetrics:
         Environment:
@@ -96,7 +96,7 @@ OptionSettings:
   aws:elasticbeanstalk:monitoring:
     Automatically Terminate Unhealthy Instances: 'true'
   aws:elasticbeanstalk:sns:topics:
-     Notification Protocol: sqs
+    Notification Protocol: sqs
     Notification Endpoint: arn:aws:sqs:eu-west-1:308867920639:rates-sql-proc
     Notification Topic Name: rates-sql-proc
   aws:elb:healthcheck:
