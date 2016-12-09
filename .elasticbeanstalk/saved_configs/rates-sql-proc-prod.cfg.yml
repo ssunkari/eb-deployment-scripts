@@ -15,6 +15,12 @@ Tags:
   ProjectCode: a208ab
   Service: Node.JS
 OptionSettings:
+  aws:elasticbeanstalk:managedactions:
+    ManagedActionsEnabled: true
+    PreferredStartTime: 'Tue:10:00'
+  aws:elasticbeanstalk:managedactions:platformupdate:
+    UpdateLevel: minor
+    InstanceRefreshEnabled: true
   AWSEBAutoScalingScaleDownPolicy.aws:autoscaling:trigger:
     LowerBreachScaleIncrement: '-1'
   AWSEBAutoScalingScaleUpPolicy.aws:autoscaling:trigger:
