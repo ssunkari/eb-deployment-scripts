@@ -1,19 +1,14 @@
 branch-defaults:
   default:
-    environment: hello-world-int
-  master:
-    environment: hello-world-qa
-    group_suffix: null
+    environment: <ENV>
 global:
-  application_name: hello-world-qa
-  branch: null
-  default_ec2_keyname: LenderSquad-Pem
-  default_platform: 64bit Amazon Linux 2016.09 v2.3.0 running Docker 1.11.2
+  application_name: <APP>
   default_region: eu-west-2
+  default_platform: 64bit Amazon Linux 2016.09 v2.3.0 running Docker 1.11.2
   instance_profile: null
   platform_name: null
   platform_version: null
   profile: null
   repository: null
-  sc: git
+  sc: null
   workspace_type: Application

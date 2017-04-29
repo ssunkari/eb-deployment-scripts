@@ -28,9 +28,9 @@ while true; do
     fi
 
     # See what's deployed
-    current_version=`aws elasticbeanstalk describe-environments --application-name "$EB_APP_NAME" --environment-name "$EB_ENV_NAME" --query "Environments[*].VersionLabel" --no-include-deleted --output text --region eu-west-1`
+    current_version=`aws elasticbeanstalk describe-environments --application-name "$EB_APP_NAME" --environment-name "$EB_ENV_NAME" --query "Environments[*].VersionLabel" --no-include-deleted --output text --region eu-west-2`
 
-    status=`aws elasticbeanstalk describe-environments --application-name "$EB_APP_NAME" --environment-name "$EB_ENV_NAME" --query "Environments[*].Status" --no-include-deleted --output text --region eu-west-1`
+    status=`aws elasticbeanstalk describe-environments --application-name "$EB_APP_NAME" --environment-name "$EB_ENV_NAME" --query "Environments[*].Status" --no-include-deleted --output text --region eu-west-2`
 
     if [ "$current_version" != "$VERSION" ]; then
         echo "Tag not updated (currently $current_version). Waiting."

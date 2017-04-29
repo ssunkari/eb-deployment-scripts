@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# usage:  -c ./deploy.sh ${EB_APP_NAME} ${GO_PIPELINE_LABEL} ${S3_BUCKET} ${AWS_ACCOUNT_ID} ${NODE_ENV} ${PORT} ${BRANCH} ${NEWRELIC_KEY} ${PROXY_URL}
+# usage:  -c ./deploy.sh ${EB_APP_NAME} ${GO_PIPELINE_LABEL} ${S3_BUCKET} ${AWS_ACCOUNT_ID} ${NODE_ENV} ${PORT} ${BRANCH}
 
 EB_APP_NAME=$1
 SHA1=$2
@@ -9,8 +9,6 @@ AWS_ACCOUNT_ID=$4
 NODE_ENV=$5
 PORT=$6
 BRANCH=$7
-NEWRELIC_KEY=$8
-PROXY_URL=$9
 
 VERSION=$EB_APP_NAME-$SHA1
 ZIP=$VERSION.zip
@@ -20,10 +18,7 @@ if [ "$existing_app" != "$VERSION" ]; then
 	sed -i "s/<NAME>/$EB_APP_NAME/" Dockerrun.aws.json
 	sed -i "s/<PORT>/$PORT/" Dockerrun.aws.json
 	sed -i "s/<TAG>/$SHA1/" Dockerrun.aws.json
-	sed -i "s,<PROXY_URL>,$PROXY_URL," .ebextensions/newrelic.config
-	sed -i "s/<NR_LICENSE_KEY>/$NEWRELIC_KEY/" .ebextensions/newrelic.config
-	sed -i "s/<NAME>/$EB_APP_NAME/" .ebextensions/newrelic.config
-	
+
 	cp Dockerrun.aws.json template.Dockerrun
 
 	sed -i "s/<AWS_ACCOUNT_ID>/$AWS_ACCOUNT_ID/" Dockerrun.aws.json

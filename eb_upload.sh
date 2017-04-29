@@ -13,7 +13,7 @@ for env in $ENVS
 do
   echo "Uploading Saved Config for ENV $env"
   # eb config always returns success even if it fails
-  result=`eb config put "$env" --profile eb-zuto-dev | grep ERROR`
+  result=`eb config put "$env" | grep ERROR`
   if [[ ! -z "$result" ]]; then
   	echo "$result"
   	exit 1
@@ -25,7 +25,7 @@ echo "list of configs fetched from S3 are \n $getSavedConfigs"
 
 for env in $ENVS
 do
-	configExists=`eb config list --profile eb-zuto-dev | grep ^"$env"$`
+	configExists=`eb config list | grep ^"$env"$`
 	if [ -z "$configExists" ]; then
 		echo "Upload Failed, $env saved config is missing in S3"
 		exit 1
