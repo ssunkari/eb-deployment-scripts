@@ -6,7 +6,7 @@ Config files are located in the correct folder structure for the EB CLI to locat
 
 To use, first init eb cli with correct application:
 ```
-eb init <APP_NAME> -r eu-west-1
+eb init <APP_NAME> -r eu-west-2
 ```
 Then we can list the configs currently on the server:
 ```
