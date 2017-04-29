@@ -11,7 +11,7 @@ PORT=$6
 
 sudo sed -i "s/EXPOSE [0-9]\+$/EXPOSE $PORT/" Dockerfile
 
-aws configure set default.region eu-west-1
+aws configure set default.region eu-west-2
 
 login_command=$(aws ecr get-login)
 
