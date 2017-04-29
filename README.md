@@ -1,6 +1,5 @@
-# rates-eb-scripts
-Various automation scripts for elastic beanstalk and docker. 
-Elastic Beanstalk environment files for rates applications.
+# eb-deployment-scripts
+Various automation scripts for elastic beanstalk and docker. Elastic Beanstalk Environment deployment scripts for your applications.
 
 ## Config files
 Config files are located in the correct folder structure for the EB CLI to locate. These are not automated so need to be uploaded to S3 manualy when a change is made.
@@ -66,9 +65,3 @@ To use:
 ./eb_upload.sh <APP_NAME> <ENV1>,<ENV2>,<ENV3>
 ```
 The configs must be named <ENV>.cfg.yml and be located in sub directory `.elasticbeanstalk/saved_configs`
-### eb_publish_prod_artefacts.sh
-This script will prepare a prod application based on a dev application
-To use:
-```
-./eb_publish_prod_artefacts.sh <APP_NAME> <GIT_REV> <DEV_ACC_ID> <PROD_ACC_ID> <S3_BUCKET> <PROD_AWS_PROFILE_NAME>
-```
